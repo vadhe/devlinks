@@ -3,7 +3,7 @@ name: CI/CD Workflow
 on:
   push:
     branches:
-      - main  # Replace 'main' with the name of your main branch
+      - main
 
 jobs:
   build:
@@ -15,9 +15,9 @@ jobs:
 
       - name: Install dependencies and build
         run: |
-          npm install  # Replace with the command to install dependencies (e.g., npm, pip, etc.)
-          npm run build  # Replace with the command to build your project (e.g., npm run build, mvn package, etc.)
+          pnpm install
+          pnpm nx run-many --target=build --affected
 
       - name: Run tests
         run: |
-          npm test  # Replace with the command to run your tests (e.g., npm test, pytest, etc.)
+          pnpm nx run-many --target=test --affected
