@@ -1,9 +1,10 @@
 name: CI/CD Workflow
 
 on:
-  pull_request:
+  push:
     branches:
       - main
+      - chore/update-ci
 
 jobs:
   build:
@@ -16,9 +17,8 @@ jobs:
       - name: Install dependencies and build
         run: |
           npm install -g pnpm
-          pnpm install
+          pnpm install --no-frozen-lockfile
           pnpm nx run-many --target=build --affected
-
       - name: Run tests
         run: |
           pnpm nx run-many --target=test --affected
