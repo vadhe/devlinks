@@ -31,13 +31,7 @@ jobs:
         uses: webfactory/ssh-agent@v0.5.0
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-      - name: Add SSH key to agent
-        run: |
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ssh_key
-          chmod 600 ssh_key
-          eval "$(ssh-agent -s)"
-          ssh-add ssh_key
-        shell: bash
       - name: Deploy to Droplet
+        # if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: |
-          ssh ${{ secrets.IP_ADDRESS }} 'cd /var/www/devlinks/ && git pull && pnpm install && pnpm nx build web && cd /var/www/devlinks/dist/packages/web && pnpm install && pm2 restart devlinks'
+          ssh 159.223.63.200 'cd /var/www/devlinks/ && git pull && pnpm install && pnpm nx build web && cd /var/www/devlinks/dist/packages/web && pnpm install && pm2 restart devlinks'
