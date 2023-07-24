@@ -34,4 +34,4 @@ jobs:
       - name: Deploy to Droplet
         # if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: |
-          ssh 159.223.63.200 'cd /var/www/devlinks/ && git pull && pnpm install && pnpm nx build web && cd /var/www/devlinks/dist/packages/web && pnpm install && pm2 restart devlinks'
+          ssh vadhe@159.223.63.200 'cd /var/www/devlinks/ && git pull && pnpm install && pnpm nx build web && cd /var/www/devlinks/dist/packages/web && pnpm install && pm2 restart devlinks'
