@@ -13,7 +13,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <p className='text-red-800'>okokok</p>
+        {children}</body>
     </html>
   );
 }
